@@ -30,6 +30,14 @@ describe('API routes', () => {
       });
   });
 
+  before((done) => {
+    database.seed.run()
+      .then(() => done())
+      .catch(error => {
+        throw error;
+      });
+  });
+
   describe('POST api/v1/foods/', () => {
     it("should create a new food", done => {
       chai.request(server)
@@ -42,7 +50,8 @@ describe('API routes', () => {
           response.should.have.status(201);
           response.body.should.be.a('object');
           response.body.should.have.property('id');
-
+          response.body.should.have.property('name');
+          response.body.should.have.property('calories');
         });
       done();
     });
