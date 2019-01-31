@@ -30,6 +30,14 @@ describe('API routes', () => {
       });
   });
 
+  beforeEach((done) => {
+    database.seed.run()
+      .then(() => done())
+      .catch(error => {
+        throw error;
+      });
+  });
+
   describe('POST api/v1/foods/', () => {
     it("should create a new food", done => {
       chai.request(server)
@@ -42,7 +50,8 @@ describe('API routes', () => {
           response.should.have.status(201);
           response.body.should.be.a('object');
           response.body.should.have.property('id');
-
+          response.body.should.have.property('name');
+          response.body.should.have.property('calories');
         });
       done();
     });
@@ -61,7 +70,26 @@ describe('API routes', () => {
         });
         done();
     });
-
-
   });
+
+  describe('GET /api/v1/foods/', () => {
+    it("should return all the food", done => {
+      chai.request(server)
+        .get('/api/v1/foods/')
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          // response.body.length.should.equal(5); // fails 33% due the post request above
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('Tea');
+          response.body[0].should.have.property('name');
+          response.body[0].calories.should.equal(100);
+          response.body[0].should.have.property('id');
+          done();
+        });
+    });
+  });
+
+
 });

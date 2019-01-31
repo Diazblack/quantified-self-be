@@ -1,0 +1,19 @@
+
+exports.seed = function(knex, Promise) {
+  // Deletes ALL existing entries
+  return knex('foods').del()
+    .then(() => {
+      return Promise.all([
+        knex('foods').insert([
+          {name: 'Tea', calories: 100},
+          {name: 'Pizza Slice', calories: 330},
+          {name: 'Cake', calories: 400},
+          {name: 'Avocado', calories: 250},
+          {name: 'Burger', calories: 700}
+        ])
+        .then(() => console.log('Food seeding complete'))
+        .catch(error => console.log(`Error seeding data: ${error}`))
+      ])
+    })
+    .catch(error => console.log(`Error seeding data: ${error}`))
+};
