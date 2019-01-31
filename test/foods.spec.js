@@ -134,7 +134,7 @@ describe('API routes', () => {
         .end((err, response) => {
           response.should.have.status(400);
           response.body.error.should.equal(
-            `Expected format: { name: <String>, calories: <String> }. You're missing a "calories" property.`
+            `You're missing a "calories" property.`
           );
           done();
         });
