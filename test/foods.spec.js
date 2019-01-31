@@ -10,16 +10,6 @@ const database = require('knex')(configuration);
 
 chai.use(chaiHttp);
 
-// As a user,
-// When I
-// POST /api/v1/foods
-// with the parameters:
-// { "food": { "name": "Name of food here", "calories": "Calories here"} }
-//
-// The a food item is created and the food item will be returned.
-// If the food is not successfully created, a 400 status code will be returned.
-// Both name and calories are required fields.
-
 describe('API routes', () => {
 
   before((done) => {
@@ -80,12 +70,36 @@ describe('API routes', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
-          // response.body.length.should.equal(5); // fails 33% due the post request above
           response.body[0].should.have.property('name');
           response.body[0].name.should.equal('Tea');
-          response.body[0].should.have.property('name');
+          response.body[0].should.have.property('calories');
           response.body[0].calories.should.equal(100);
           response.body[0].should.have.property('id');
+          done();
+        });
+    });
+  });
+
+  describe('GET /api/v1/foods/id', () => {
+    it("should return an specific food by id", done => {
+      chai.request(server)
+        .get(`/api/v1/foods/3`)
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          done();
+        });
+    });
+
+    it("should return an error if food don't exist", done => {
+      chai.request(server)
+        .get(`/api/v1/foods/10000`)
+        .end((err, response) => {
+          response.should.have.status(404);
+          response.body.error.should.equal(
+            `Couldn't find food`
+          );
           done();
         });
     });
