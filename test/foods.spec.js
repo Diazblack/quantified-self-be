@@ -141,4 +141,24 @@ describe('API routes', () => {
     });
   });
 
+  describe('DELETE /api/v1/foods/:id', () => {
+    it("should delete food from the db by id", done => {
+      chai.request(server)
+        .delete('/api/v1/foods/1')
+        .end((err, response) => {
+          response.should.have.status(204);
+          done();
+        });
+    });
+
+    it("should food with id don't exist return 404", done => {
+      chai.request(server)
+        .delete('/api/v1/foods/20')
+        .end((err, response) => {
+          response.should.have.status(404);
+          done();
+        });
+    });
+  });
+
 });
