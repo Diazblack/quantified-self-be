@@ -161,4 +161,17 @@ describe('API routes', () => {
     });
   });
 
+  describe('POST /api/v1/meals/:meal_id/foods/:id', () => {
+    it('should add food by id to a meal using meal_is', done => {
+      chai.request(server)
+      .post('/api/v1/meals/1/foods/1')
+      .end((err, response) => {
+        response.should.have.status(201);
+        response.body.should.have.property('message');
+        response.body.message.should.equal('Successfully added Tea to Breakfast');
+        done();
+      });
+    });
+  });
+
 });
