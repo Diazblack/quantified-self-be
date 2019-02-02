@@ -172,6 +172,23 @@ describe('API routes', () => {
         done();
       });
     });
-  });
 
+    it("should return 404 if the meal with id don't exit", done => {
+      chai.request(server)
+        .post('/api/v1/meals/10/foods/1')
+        .end((err, response) => {
+          response.should.have.status(404);
+          done();
+        });
+    });
+
+    it("should return 404 if the food with id don't exit", done => {
+      chai.request(server)
+        .post('/api/v1/meals/1/foods/20')
+        .end((err, response) => {
+          response.should.have.status(404);
+          done();
+      });
+    });
+  });
 });
