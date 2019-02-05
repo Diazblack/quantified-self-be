@@ -11,7 +11,8 @@ exports.seed = function(knex, Promise) {
           {name: 'Avocado', calories: 250},
           {name: 'Salad', calories: 250},
           {name: 'Donut', calories: 250},
-          {name: 'Burger', calories: 700}
+          {name: 'Burger', calories: 700},
+          {name: 'Cauliflower', calories: 50}
         ])
         .then(() => console.log('Food seeding complete'))
         .catch(error => console.log(`Error seeding data: ${error}`))
