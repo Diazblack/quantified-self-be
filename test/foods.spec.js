@@ -209,4 +209,33 @@ describe('API routes', () => {
         });
     });
   });
+
+  describe('GET /api/v1/meals/:id/foods', () => {
+    it("should return an specific meal by id  with their foods", done => {
+      chai.request(server)
+        .get('/api/v1/meals/3/foods')
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('Lunch');
+          response.body[0].should.have.property('foods');
+          response.body[0].foods[1].should.have.property('name');
+          response.body[0].foods[1].name.should.equal('Avocado');
+          response.body[0].foods[0].should.have.property('name');
+          response.body[0].foods[0].name.should.equal('Pizza Slice');
+          done();
+        });
+    });
+
+    it("should return 404 if the meal with id don't exit", done => {
+      chai.request(server)
+        .post('/api/v1/meals/1000/foods/')
+        .end((err, response) => {
+          response.should.have.status(404);
+          done();
+      });
+    });
+  });
 });
