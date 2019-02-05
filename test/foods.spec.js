@@ -144,7 +144,7 @@ describe('API routes', () => {
   describe('DELETE /api/v1/foods/:id', () => {
     it("should delete food from the db by id", done => {
       chai.request(server)
-        .delete('/api/v1/foods/1')
+        .delete('/api/v1/foods/8')
         .end((err, response) => {
           response.should.have.status(204);
           done();
@@ -189,6 +189,24 @@ describe('API routes', () => {
           response.should.have.status(404);
           done();
       });
+    });
+  });
+
+  describe('GET /api/v1/meals', () => {
+    it("should return all the meals in the db with their foods", done => {
+      chai.request(server)
+        .get('/api/v1/meals/')
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('Breakfast');
+          response.body[0].should.have.property('foods');
+          response.body[0].foods[0].should.have.property('name');
+          response.body[0].foods[0].name.should.equal('Tea');
+          done();
+        });
     });
   });
 });
