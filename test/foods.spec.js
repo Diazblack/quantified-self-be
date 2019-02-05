@@ -191,4 +191,22 @@ describe('API routes', () => {
       });
     });
   });
+  
+  describe('GET /api/v1/meals', () => {
+    it("should return all the meals in the db with their foods", done => {
+      chai.request(server)
+        .get('/api/v1/meals/')
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('Breakfast');
+          response.body[0].should.have.property('Foods');
+          response.body.foods[0].should.have.property('name');
+          response.body.foods[0].name.should.equal('Tea');
+          done();
+        });
+    });
+  });
 });
