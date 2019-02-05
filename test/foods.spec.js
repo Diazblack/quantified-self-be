@@ -209,4 +209,22 @@ describe('API routes', () => {
         });
     });
   });
+
+  describe('GET /api/v1/meals/:id/foods', () => {
+    it("should return an specific meal by id  with their foods", done => {
+      chai.request(server)
+        .get('/api/v1/meals/1/foods')
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('Breakfast');
+          response.body[0].should.have.property('foods');
+          response.body[0].foods[0].should.have.property('name');
+          response.body[0].foods[0].name.should.equal('Tea');
+          done();
+        });
+    });
+  });
 });
