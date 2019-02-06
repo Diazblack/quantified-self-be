@@ -217,14 +217,13 @@ describe('API routes', () => {
         .end((err, response) => {
           response.should.have.status(200);
           response.should.be.json;
-          response.body.should.be.a('array');
-          response.body[0].should.have.property('name');
-          response.body[0].name.should.equal('Lunch');
-          response.body[0].should.have.property('foods');
-          response.body[0].foods[1].should.have.property('name');
-          response.body[0].foods[1].name.should.equal('Avocado');
-          response.body[0].foods[0].should.have.property('name');
-          response.body[0].foods[0].name.should.equal('Pizza Slice');
+          response.body.should.have.property('name');
+          response.body.name.should.equal('Lunch');
+          response.body.should.have.property('foods');
+          response.body.foods[1].should.have.property('name');
+          response.body.foods[1].name.should.equal('Avocado');
+          response.body.foods[0].should.have.property('name');
+          response.body.foods[0].name.should.equal('Pizza Slice');
           done();
         });
     });
@@ -249,5 +248,43 @@ describe('API routes', () => {
         });
     });
 
+  })
+
+  describe('POST /api/v1/calendar/', () => {
+    it('should create a new date in the calendar', done => {
+      chai.request(server)
+      .post('/api/v1/calendar')
+      .send({
+        date: '2018-02-07',
+        goal: 2000,
+        consumed: 1800,
+        remaining: 200,
+        meals: [
+          {id: 1, name: 'Breakfast', foods: [{id: 1, name: 'Tea', calories: 100}]},
+          {id: 2, name: 'Snacks', foods: [{id: 3, name: 'Cake', calories: 300}]},
+          {id: 3, name: 'Lunch', food:[{id: 5, name: 'Salad', calories: 400}]},
+          {id: 4, name: 'Dinner', food:[{id: 7, name: 'Burger', calories: 1000}]}
+        ]
+      })
+      .end((err, response) => {
+        response.should.have.status(201);
+        done();
+        // response.should.be.json;
+        // response.body.should.have.property('id');
+        // response.body.id.should.equal(1);
+        // response.body.should.have.property('date_str');
+        // response.body.date.should.equal('20018-02-07');
+        // response.body.should.have.property('goal');
+        // response.body.goal.should.equal(2000);
+        // response.body.should.have.property('consumed');
+        // response.body.consumed.should.equal(1800);
+        // response.body.should.have.property('remaining');
+        // response.body.remaining.should.equal(200);
+        // response.body.should.have.property('meals');
+        // response.body.meals.should.be.a('array');
+        // response.body.meals[0].should.have.property('id');
+        // response.body.meals[0].id.should.equal(1)
+      })
+    })
   })
 });
