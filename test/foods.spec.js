@@ -217,14 +217,13 @@ describe('API routes', () => {
         .end((err, response) => {
           response.should.have.status(200);
           response.should.be.json;
-          response.body.should.be.a('array');
-          response.body[0].should.have.property('name');
-          response.body[0].name.should.equal('Lunch');
-          response.body[0].should.have.property('foods');
-          response.body[0].foods[1].should.have.property('name');
-          response.body[0].foods[1].name.should.equal('Avocado');
-          response.body[0].foods[0].should.have.property('name');
-          response.body[0].foods[0].name.should.equal('Pizza Slice');
+          response.body.should.have.property('name');
+          response.body.name.should.equal('Lunch');
+          response.body.should.have.property('foods');
+          response.body.foods[1].should.have.property('name');
+          response.body.foods[1].name.should.equal('Avocado');
+          response.body.foods[0].should.have.property('name');
+          response.body.foods[0].name.should.equal('Pizza Slice');
           done();
         });
     });
