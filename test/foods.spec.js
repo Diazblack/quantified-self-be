@@ -245,20 +245,9 @@ describe('API routes', () => {
         .delete('/api/v1/meals/3/foods/2')
         .end((err, response) => {
           response.should.have.status(204);
-          // response.should.be.json;
-          // response.body.should.have.property('message');
-          // response.body.message.should.equal('Successfully removed Pizza Slice to Lunch');
           done();
         });
     });
 
-    it("should return 404 if the meal with id don't exit", done => {
-      chai.request(server)
-        .delete('/api/v1/meals/300/foods/200')
-        .end((err, response) => {
-          response.should.have.status(404);
-          done();
-      });
-    });
   })
 });
