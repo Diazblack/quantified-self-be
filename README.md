@@ -11,15 +11,15 @@ From GitHub clone down repository using the following commands in terminal:
 * `git clone git@github.com:Diazblack/quantified-self-be.git`
 * `cd quantified-self-be`
 
-YOu may need to install some packages first:
-`npm init --yes
-npm install knex -g
-npm install knex --save
-npm install express -g
-npm install express --save
-npm install pg --save
-npm install body-parser --save
-`
+You may need to install some packages first:
+* `npm init --yes`
+* `npm install knex -g`
+* `npm install knex --save`
+* `npm install express -g`
+* `npm install express --save`
+* `npm install pg --save`
+* `npm install body-parser --save`
+
 
 Use the following commands to setup you test environment and database:
 * `npm install -D mocha chai chai-http`
