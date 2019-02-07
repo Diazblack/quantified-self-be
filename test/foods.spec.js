@@ -255,7 +255,7 @@ describe('API routes', () => {
       chai.request(server)
       .post('/api/v1/calendar')
       .send({
-        date: '2018-02-07',
+        date_str: '2018-02-07',
         goal: 2000,
         consumed: 1800,
         remaining: 200,
