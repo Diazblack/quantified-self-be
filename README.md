@@ -270,7 +270,7 @@ Example successful response:
 ```
 
 #### DELETE /api/v1/meals/:meal_id/foods/:id
-This endpoint deletes a specified meal from a specific meal.  It deletes the relationship between the food and the meal in the MealFood table.
+This endpoint deletes a specified meal from a specific meal.  It deletes the relationship between the food and the meal in the MealFood table and returns a the status 204 (content not found) when is successfull.
 
 ### Calendar Endpoints
 #### GET /api/v1/calendar
