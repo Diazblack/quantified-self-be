@@ -269,21 +269,33 @@ describe('API routes', () => {
       .end((err, response) => {
         response.should.have.status(201);
         done();
-        // response.should.be.json;
-        // response.body.should.have.property('id');
-        // response.body.id.should.equal(1);
-        // response.body.should.have.property('date_str');
-        // response.body.date.should.equal('20018-02-07');
-        // response.body.should.have.property('goal');
-        // response.body.goal.should.equal(2000);
-        // response.body.should.have.property('consumed');
-        // response.body.consumed.should.equal(1800);
-        // response.body.should.have.property('remaining');
-        // response.body.remaining.should.equal(200);
-        // response.body.should.have.property('meals');
-        // response.body.meals.should.be.a('array');
-        // response.body.meals[0].should.have.property('id');
-        // response.body.meals[0].id.should.equal(1)
+
+      })
+    })
+  })
+
+  describe('GET /api/v1/calendar/', () => {
+    it('should return all the dates', done => {
+      chai.request(server)
+      .get('/api/v1/calendar/')
+      .end((err, response) => {
+        response.should.have.status(200);
+        response.should.be.json;
+        response.body[0].should.have.property('id');
+        response.body[0].id.should.equal(1);
+        response.body[0].should.have.property('date_str');
+        response.body[0].date_str.should.equal('2018-02-05');
+        response.body[0].should.have.property('goal');
+        response.body[0].goal.should.equal(2000);
+        response.body[0].should.have.property('consumed');
+        response.body[0].consumed.should.equal(1600);
+        response.body[0].should.have.property('remaining');
+        response.body[0].remaining.should.equal(400);
+        response.body[0].should.have.property('meals');
+        response.body[0].meals.should.be.a('array');
+        response.body[0].meals[0].should.have.property('id');
+        response.body[0].meals[0].id.should.equal(1);
+        done();
       })
     })
   })

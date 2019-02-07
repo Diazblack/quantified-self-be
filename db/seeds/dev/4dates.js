@@ -1,7 +1,7 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('dates').del()
+  return knex.raw('TRUNCATE dates RESTART IDENTITY CASCADE')
     .then(() => {
       return Promise.all([
         knex('dates').insert([
