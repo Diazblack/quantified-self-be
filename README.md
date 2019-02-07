@@ -41,6 +41,7 @@ Example output:
 #### POST /api/v1/foods
 A new food can be created using the following format:
 ![Sent food](screenshots/postFood.png)
+
 BOTH food name and calories must be sent in.
 
 If successful, this returns the food item that is created. A 400 status is returned if not successful.  
