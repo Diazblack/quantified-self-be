@@ -13,8 +13,8 @@ exports.seed = function(knex, Promise) {
             meals: JSON.stringify([
               {id: 1, name: 'Breakfast', foods: [{id: 1, name: 'Tea', calories: 200}]},
               {id: 2, name: 'Snacks', foods: [{id: 8, name: 'Fries', calories: 600}]},
-              {id: 3, name: 'Lunch', food:[{id: 9, name: 'Shawarma', calories: 600}]},
-              {id: 4, name: 'Dinner', food:[{id: 10, name: 'Salad', calories: 400}]}
+              {id: 3, name: 'Lunch', foods:[{id: 9, name: 'Shawarma', calories: 600}]},
+              {id: 4, name: 'Dinner', foods:[{id: 10, name: 'Salad', calories: 400}]}
             ])
           },
           {
@@ -25,8 +25,8 @@ exports.seed = function(knex, Promise) {
             meals: JSON.stringify([
               {id: 1, name: 'Breakfast', foods: [{id: 1, name: 'Tea', calories: 200}]},
               {id: 2, name: 'Snacks', foods: [{id: 11, name: 'Nuts', calories: 300}]},
-              {id: 3, name: 'Lunch', food:[{id: 12, name: 'Paella', calories: 1000}]},
-              {id: 4, name: 'Dinner', food:[{id: 13, name: 'Ceviche', calories: 400}]}
+              {id: 3, name: 'Lunch', foods:[{id: 12, name: 'Paella', calories: 1000}]},
+              {id: 4, name: 'Dinner', foods:[{id: 13, name: 'Ceviche', calories: 400}]}
             ])
           }
         ])
