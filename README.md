@@ -30,16 +30,19 @@ These are all the endpoints that can be hit.
 This returns all foods currently in the database.  
 
 Example output:
+
 ![All foods output](screenshots/getFoods.png)
 
 #### GET /api/v1/foods/:id
 This returns a specific food when an id is passed in.  A 404 error is returned if the food is not found.
 
 Example output:
+
 ![Single food output](screenshots/getSingleFood.png)
 
 #### POST /api/v1/foods
 A new food can be created using the following format:
+
 ![Sent food](screenshots/postFood.png)
 
 BOTH food name and calories must be sent in.
@@ -47,19 +50,23 @@ BOTH food name and calories must be sent in.
 If successful, this returns the food item that is created. A 400 status is returned if not successful.  
 
 Example successful response:
+
 ![Posted food](screenshots/postFoodResponse.png)
 
 Example failed response:
+
 ![Failed food post](screenshots/failedPostFood.png)
 
 #### PATCH /api/v1/foods/:id
 This allows a food's name or calories to be updated.  
 Changes should be sent in the following format:
+
 ![Patch food](screenshots/patchFood.png)
 
 If successfully updated, the updated food will be returned.  A status 400 code will be returned if not successful.
 
 Example successful response:
+
 ![Patch food response](screenshots/patchFoodResponse.png)
 
 #### DELETE /api/v1/foods/:id
